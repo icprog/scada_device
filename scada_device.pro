@@ -17,8 +17,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     scadadevice.cpp \
-    packet.cpp
+    packet.cpp \
+    signalsimulator.cpp \
+    signalgenerator.cpp
 
 HEADERS += \
     scadadevice.h \
-    packet.h
+    packet.h \
+    signalsimulator.h \
+    signalgenerator.h

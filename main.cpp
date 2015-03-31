@@ -5,10 +5,6 @@
 
 int main(int argc, char *argv[])
 {
-    Packet packet;
-    bool yolo;
-    packet.decode("!|#p|1|#d|1|#b|Pressure|Manufacturer unknown|#n|-100|+100|\n");
-    QByteArray swag = packet.encode();
 
   /*  QTextStream qCout(stdout);
     QTextStream qCin(stdin);
