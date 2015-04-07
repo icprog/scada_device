@@ -80,6 +80,36 @@ bool Packet::decode(QByteArray data)
     else return false;
 
     return true;
-
 }
 
+int Packet::getPacketType()
+{
+    return packetID;
+}
+
+QList<QString> *Packet::getBriefData()
+{
+    return briefData;
+}
+
+QList<double>* Packet::getNumericData()
+{
+    return numericData;
+}
+
+void Packet::setPacketID(int id)
+{
+    this->packetID = (PacketID_enum) id;
+}
+void Packet::setDeviceID(int id)
+{
+    this->deviceID = id;
+}
+void Packet::addBriefData(QString data)
+{
+    this->briefData->append(data);
+}
+void Packet::addNumericData(double data)
+{
+    this->numericData->append(data);
+}

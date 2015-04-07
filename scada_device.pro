@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core
+QT       += core network
 
 QT       -= gui
 
@@ -19,10 +19,16 @@ SOURCES += main.cpp \
     scadadevice.cpp \
     packet.cpp \
     signalsimulator.cpp \
-    signalgenerator.cpp
+    signalgenerator.cpp \
+    sensor.cpp \
+    simulatedsensor.cpp \
+    deviceclient.cpp
 
 HEADERS += \
     scadadevice.h \
     packet.h \
     signalsimulator.h \
-    signalgenerator.h
+    signalgenerator.h \
+    sensor.h \
+    simulatedsensor.h \
+    deviceclient.h

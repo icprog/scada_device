@@ -8,13 +8,6 @@
 class Packet
 {
 public:
-    Packet();
-    ~Packet();
-
-    QByteArray encode();
-    bool decode(QByteArray data);
-
-private:
     enum PacketID_enum{
         SENSOR_INIT,
         SENSOR_DATA,
@@ -22,14 +15,31 @@ private:
         REGULATOR_DATA
     };
 
+    Packet();
+    ~Packet();
+
+    QByteArray encode();
+    bool decode(QByteArray data);
+
+    int getPacketType();
+    QList<QString>* getBriefData();
+    QList<double>* getNumericData();
+
+    void setPacketID(int id);
+    void setDeviceID(int id);
+    void addBriefData(QString data);
+    void addNumericData(double data);
+
+private:
+
     PacketID_enum packetID;
     int deviceID;
     QList<QString>* briefData;
     QList<double>* numericData;
 
-    const char START_CHAR = '!';
-    const char SEPARATOR = '|';
-    const char END_CHAR = '\n';
+    static const char START_CHAR = '!';
+    static const char SEPARATOR = '|';
+    static const char END_CHAR = '\n';
 
 };
 

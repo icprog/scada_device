@@ -25,6 +25,11 @@ void SignalGenerator::setParameters(double amplitude, double phase, double stdDe
     this->stdDeviation = stdDeviation;
 }
 
+QTimer* SignalGenerator::getTimer()
+{
+    return &timer;
+}
+
 void SignalGenerator::onTimerTimeout()
 {
     currentTime++;

@@ -13,6 +13,7 @@ public:
     ~SignalGenerator();
     void setTimeBase(double time);
     void setParameters(double amplitude, double phase, double stdDeviation);
+    QTimer* getTimer();
 private:
     QTimer timer;
     double amplitude;
