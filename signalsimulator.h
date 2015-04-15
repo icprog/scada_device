@@ -7,10 +7,10 @@ class SignalSimulator
 public:
     SignalSimulator();
     ~SignalSimulator();
-    SignalGenerator *generator();
+    SignalGenerator* generator();
 
 private:
-    SignalGenerator gener;
+    SignalGenerator *gener;
 };
 
 #endif // SIGNALSIMULATOR_H

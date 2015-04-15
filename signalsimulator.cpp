@@ -2,15 +2,15 @@
 
 SignalSimulator::SignalSimulator()
 {
-
+    gener = new SignalGenerator();
 }
 
 SignalSimulator::~SignalSimulator()
 {
-
+    delete gener;
 }
 
 SignalGenerator* SignalSimulator::generator()
 {
-    return &gener;
+    return gener;
 }

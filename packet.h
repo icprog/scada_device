@@ -12,18 +12,23 @@ public:
         SENSOR_INIT,
         SENSOR_DATA,
         REGULATOR_INIT,
-        REGULATOR_DATA
+        REGULATOR_DATA,
+        HMI_INIT
     };
 
     Packet();
+    Packet(const Packet &packet);
     ~Packet();
 
-    QByteArray encode();
-    bool decode(QByteArray data);
+    Packet &operator= (const Packet &packet);
 
-    int getPacketType();
-    QList<QString>* getBriefData();
-    QList<double>* getNumericData();
+    QByteArray encode();
+    bool decode(QByteArray *data);
+
+    int getPacketType() const;
+    int getDeviceID() const;
+    QList<QString>* getBriefData() const;
+    QList<double>* getNumericData() const;
 
     void setPacketID(int id);
     void setDeviceID(int id);

@@ -9,7 +9,7 @@ class SignalGenerator : public QObject
 {
     Q_OBJECT
 public:
-    explicit SignalGenerator(QObject *parent = 0);
+    SignalGenerator(QObject *parent = 0);
     ~SignalGenerator();
     void setTimeBase(double time);
     void setParameters(double amplitude, double phase, double stdDeviation);

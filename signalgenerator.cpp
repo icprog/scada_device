@@ -3,7 +3,10 @@
 SignalGenerator::SignalGenerator(QObject *parent) : QObject(parent)
 {
     connect(&timer, SIGNAL(timeout()), this, SLOT(onTimerTimeout()));
+    currentTime =0;
+    currentValue = 0;
     timer.start();
+
 }
 
 SignalGenerator::~SignalGenerator()

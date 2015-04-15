@@ -11,14 +11,15 @@ class Sensor : public ScadaDevice
 
 public:
     Sensor();
+
     ~Sensor();
     Packet getDataPacket();
     Packet getInitPacket();
-    void dataReceived(Packet data);
-    void initReceived(Packet init);
+    void dataReceived(Packet *data);
+    void initReceived(Packet *init);
 
-private:
-    int deviceID;
+protected:
+//    int deviceID;
     QString measurandName;
     QString measurandUnit;
     double rangeMin;

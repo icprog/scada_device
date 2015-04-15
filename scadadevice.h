@@ -1,6 +1,7 @@
 #ifndef SCADADEVICE_H
 #define SCADADEVICE_H
 #include "packet.h"
+#include <QTcpSocket>
 
 enum deviceState_enum
 {
@@ -17,13 +18,15 @@ public:
 
     virtual Packet getInitPacket();
     virtual Packet getDataPacket();
-    virtual void initReceived(Packet init);
-    virtual void dataReceived(Packet data);
-
+    virtual void initReceived(Packet* init);
+    virtual void dataReceived(Packet* data);
+    int getUUID();
 protected:
+    int uuid;
     QString name;
     QString factoryData;
     deviceState_enum deviceState;
+
 };
 
 #endif // SCADADEVICE_H

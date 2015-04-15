@@ -69,7 +69,7 @@ void DeviceClient::onBytesReceived()
     QByteArray rxData = socket->readAll();
     Packet packet;
     QList<Packet> packetList;
-    while(packet.decode(rxData)) //there can be more packets which came together
+    while(packet.decode(&rxData)) //there can be more packets which came together
     {
         packetList.append(packet); //we will separate them and put into list
     }
@@ -77,9 +77,9 @@ void DeviceClient::onBytesReceived()
     {
         if(element.getPacketType() == Packet::REGULATOR_DATA ||
                 element.getPacketType() == Packet::SENSOR_DATA)
-            device->dataReceived(element);
+            device->dataReceived(&element);
         if(element.getPacketType() == Packet::REGULATOR_INIT ||
                 element.getPacketType() == Packet::SENSOR_INIT)
-            device->initReceived(element);
+            device->initReceived(&element);
     }
 }

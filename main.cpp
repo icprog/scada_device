@@ -2,6 +2,8 @@
 #include <QTextStream>
 #include <QByteArray>
 #include "packet.h"
+#include "deviceclient.h"
+#include "simulatedsensor.h"
 
 int main(int argc, char *argv[])
 {
@@ -71,7 +73,19 @@ int main(int argc, char *argv[])
     device->generator().setParameters(amplitude, phase, stdDev);
 
 */
-//    QCoreApplication a(argc, argv);
+    QCoreApplication a(argc, argv);
+    SimulatedSensor simulatedSensor(112, "sensor", "really good one", "pressure", "kPa", 0, 100, 0.1);
+    simulatedSensor.generator()->setParameters(10,0,1);
+    simulatedSensor.generator()->setTimeBase(1000);
+    ScadaDevice* device = &simulatedSensor;
+//    SimulatedSensor* sensor = dynamic_cast<SimulatedSensor*>(&device);
 
-    return 0;
+
+    DeviceClient deviceClient;
+    deviceClient.setDevice(device);
+    deviceClient.connectToHost("localhost", 8888);
+
+
+//    delete device, deviceClient;
+    return a.exec();
 }
