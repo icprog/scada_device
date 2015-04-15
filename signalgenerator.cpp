@@ -5,8 +5,16 @@ SignalGenerator::SignalGenerator(QObject *parent) : QObject(parent)
     connect(&timer, SIGNAL(timeout()), this, SLOT(onTimerTimeout()));
     currentTime =0;
     currentValue = 0;
-    timer.start();
 
+
+}
+
+SignalGenerator::SignalGenerator(QObject *parent, double* generatedSignalPointer) : QObject(parent)
+{
+    connect(&timer, SIGNAL(timeout()), this, SLOT(onTimerTimeout()));
+    currentTime =0;
+    currentValue = 0;
+    currentValue = generatedSignalPointer;
 }
 
 SignalGenerator::~SignalGenerator()
@@ -19,6 +27,7 @@ void SignalGenerator::setTimeBase(double time)
     this->timeBase = time;
     this->interval = time/50;
     timer.setInterval(interval);
+    timer.start();
 }
 
 void SignalGenerator::setParameters(double amplitude, double phase, double stdDeviation)
@@ -36,10 +45,10 @@ QTimer* SignalGenerator::getTimer()
 void SignalGenerator::onTimerTimeout()
 {
     currentTime++;
-    currentValue = sin((2*M_PI/interval)*currentTime + phase * (2 * M_PI /360));
+    *currentValue = amplitude * sin((2*M_PI/interval)*currentTime + phase * (2 * M_PI /360));
     double a = -10;
     double b = 10;
-    currentValue += a+rand()*(b-a);
+//    *currentValue += a+rand()*(b-a);
     if(currentTime>50)
         currentTime = 0;
 }

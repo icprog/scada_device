@@ -16,7 +16,6 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    signalsimulator.cpp \
     signalgenerator.cpp \
     simulatedsensor.cpp \
     packet.cpp \
@@ -25,7 +24,6 @@ SOURCES += main.cpp \
     deviceclient.cpp
 
 HEADERS += \
-    signalsimulator.h \
     signalgenerator.h \
     simulatedsensor.h \
     deviceclient.h \

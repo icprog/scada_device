@@ -75,8 +75,8 @@ int main(int argc, char *argv[])
 */
     QCoreApplication a(argc, argv);
     SimulatedSensor simulatedSensor(112, "sensor", "really good one", "pressure", "kPa", 0, 100, 0.1);
-    simulatedSensor.generator()->setParameters(10,0,1);
-    simulatedSensor.generator()->setTimeBase(1000);
+    simulatedSensor.getGenerator()->setParameters(10,0,1);
+    simulatedSensor.getGenerator()->setTimeBase(1000);
     ScadaDevice* device = &simulatedSensor;
 //    SimulatedSensor* sensor = dynamic_cast<SimulatedSensor*>(&device);
 

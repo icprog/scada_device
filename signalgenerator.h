@@ -10,6 +10,7 @@ class SignalGenerator : public QObject
     Q_OBJECT
 public:
     SignalGenerator(QObject *parent = 0);
+    SignalGenerator(QObject *parent, double* generatedSignalPointer);
     ~SignalGenerator();
     void setTimeBase(double time);
     void setParameters(double amplitude, double phase, double stdDeviation);
@@ -22,7 +23,7 @@ private:
     double timeBase;
     double stdDeviation;
 
-    double currentValue;
+    double *currentValue;
     int currentTime;
 
 public slots:

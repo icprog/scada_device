@@ -5,7 +5,7 @@ SimulatedSensor::SimulatedSensor()
 
 }
 
-SimulatedSensor::SimulatedSensor(int uuid, QString name, QString factoryData, QString measurandName, QString measureUnit, double rangeMin, double rangeMax, double samplingPeriod) : SignalSimulator()
+SimulatedSensor::SimulatedSensor(int uuid, QString name, QString factoryData, QString measurandName, QString measureUnit, double rangeMin, double rangeMax, double samplingPeriod)
 {
     this->uuid = uuid;
     this->name = name;
@@ -15,10 +15,17 @@ SimulatedSensor::SimulatedSensor(int uuid, QString name, QString factoryData, QS
     this->rangeMax = rangeMax;
     this->rangeMin = rangeMin;
     this->samplingPeriod = samplingPeriod;
+    this->generator = new SignalGenerator(NULL, &currentValue);
+
+}
+
+SignalGenerator* SimulatedSensor::getGenerator() const
+{
+    return generator;
 }
 
 SimulatedSensor::~SimulatedSensor()
 {
-
+    delete generator;
 }
 
