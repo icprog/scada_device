@@ -6,7 +6,6 @@ Sensor::Sensor() : ScadaDevice()
     measurandUnit = "nodata";
 }
 
-
 Sensor::~Sensor()
 {
 
@@ -44,30 +43,37 @@ Packet Sensor::getInitPacket()
     return packet;
 }
 
-void Sensor::dataReceived(Packet *data)
+bool Sensor::dataReceived(Packet *data)
 {
     QList<QString>* brief = data->getBriefData();
     QList<double>* numeric = data->getNumericData();
     if(!brief->isEmpty() && !numeric->isEmpty())
     {
         if(brief->at(0)=="meas_value")
+        {
             currentValue = numeric->at(0);
+            return true;
+        }
     }
+    return false;
 
 }
 
-void Sensor::initReceived(Packet *init)
+bool Sensor::initReceived(Packet *init)
 {
     QList<QString>* brief = init->getBriefData();
     QList<double>* numeric = init->getNumericData();
-    if(brief->size() == 7 && numeric->size()==2)
+    if(brief->size() == 11 && numeric->size()==3)
     {
-        name = brief->at(0);
-        factoryData = brief->at(1);
-        measurandName = brief->at(2);
-        measurandUnit = brief->at(3);
+        name = brief->at(1);
+        factoryData = brief->at(3);
+        measurandName = brief->at(5);
+        measurandUnit = brief->at(7);
         rangeMax = numeric->at(0);
         rangeMin = numeric->at(1);
+        samplingPeriod = numeric->at(2);
+        return true;
     }
+    return false;
 
 }
