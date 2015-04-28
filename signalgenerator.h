@@ -14,7 +14,8 @@ public:
     ~SignalGenerator();
     void setTimeBase(double time);
     void setParameters(double amplitude, double phase, double stdDeviation);
-    QTimer* getTimer();
+    void setGeneratedValuePointer(double* genVal);
+//    QTimer* getTimer();
 private:
     QTimer timer;
     double amplitude;
@@ -22,8 +23,8 @@ private:
     double interval;
     double timeBase;
     double stdDeviation;
-
-    double *currentValue;
+protected:
+    double *currentValuePtr;
     int currentTime;
 
 public slots:

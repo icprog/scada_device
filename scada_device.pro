@@ -18,15 +18,17 @@ TEMPLATE = app
 SOURCES += main.cpp \
     signalgenerator.cpp \
     simulatedsensor.cpp \
-    packet.cpp \
-    scadadevice.cpp \
-    sensor.cpp \
-    deviceclient.cpp
+    deviceclient.cpp \
+    common/humanmachineinterface.cpp \
+    common/packet.cpp \
+    common/scadadevice.cpp \
+    common/sensor.cpp
 
 HEADERS += \
     signalgenerator.h \
     simulatedsensor.h \
     deviceclient.h \
-    packet.h \
-    scadadevice.h \
-    sensor.h
+    common/humanmachineinterface.h \
+    common/packet.h \
+    common/scadadevice.h \
+    common/sensor.h

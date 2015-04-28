@@ -75,11 +75,12 @@ void DeviceClient::onBytesReceived()
     }
     foreach(Packet element, packetList)
     {
-        if(element.getPacketType() == Packet::REGULATOR_DATA ||
-                element.getPacketType() == Packet::SENSOR_DATA)
+        if(element.getPacketType() == Packet::DATA ||
+                element.getPacketType() == Packet::DATA)
             device->dataReceived(&element);
         if(element.getPacketType() == Packet::REGULATOR_INIT ||
                 element.getPacketType() == Packet::SENSOR_INIT)
             device->initReceived(&element);
+
     }
 }

@@ -5,7 +5,7 @@
 #include <QTcpSocket>
 #include <QDebug>
 #include <QTimer>
-#include "scadadevice.h"
+#include "common/scadadevice.h"
 
 
 class DeviceClient : public QObject

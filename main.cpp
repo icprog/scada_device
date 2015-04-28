@@ -1,7 +1,7 @@
 #include <QCoreApplication>
 #include <QTextStream>
 #include <QByteArray>
-#include "packet.h"
+#include "common/packet.h"
 #include "deviceclient.h"
 #include "simulatedsensor.h"
 
@@ -75,8 +75,8 @@ int main(int argc, char *argv[])
 */
     QCoreApplication a(argc, argv);
     SimulatedSensor simulatedSensor(112, "sensor", "really good one", "pressure", "kPa", 0, 100, 0.1);
-    simulatedSensor.getGenerator()->setParameters(10,0,1);
-    simulatedSensor.getGenerator()->setTimeBase(1000);
+    simulatedSensor.setParameters(10,0,1);
+    simulatedSensor.setTimeBase(1000);
     ScadaDevice* device = &simulatedSensor;
 //    SimulatedSensor* sensor = dynamic_cast<SimulatedSensor*>(&device);
 
