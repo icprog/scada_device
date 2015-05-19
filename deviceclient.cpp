@@ -66,6 +66,7 @@ void DeviceClient::onDisconnected()
 
 void DeviceClient::onBytesReceived()
 {
+    qDebug() << "Data received";
     QByteArray rxData = socket->readAll();
     Packet packet;
     QList<Packet> packetList;
@@ -75,12 +76,15 @@ void DeviceClient::onBytesReceived()
     }
     foreach(Packet element, packetList)
     {
-        if(element.getPacketType() == Packet::DATA ||
-                element.getPacketType() == Packet::DATA)
-            device->dataReceived(&element);
-        if(element.getPacketType() == Packet::REGULATOR_INIT ||
-                element.getPacketType() == Packet::SENSOR_INIT)
-            device->initReceived(&element);
-
+        if(element.getPacketType()==Packet::SETTINGS)
+        {
+            qDebug() << "SETTINGS received";
+            SimulatedSensor* sensor = dynamic_cast<SimulatedSensor*>(device);
+            if(sensor)
+            {
+                sensor->settingsReceived(&element);
+            }
+            else device->settingsReceived(&element);
+        }
     }
 }

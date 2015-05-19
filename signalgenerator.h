@@ -17,13 +17,14 @@ public:
     void setGeneratedValuePointer(double* genVal);
 //    QTimer* getTimer();
 private:
-    QTimer timer;
+
     double amplitude;
     double phase;
     double interval;
     double timeBase;
     double stdDeviation;
 protected:
+    QTimer timer;
     double *currentValuePtr;
     int currentTime;
 

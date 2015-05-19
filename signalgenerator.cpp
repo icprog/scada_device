@@ -42,18 +42,11 @@ void SignalGenerator::setGeneratedValuePointer(double* genVal)
     this->currentValuePtr = genVal;
 }
 
-//QTimer* SignalGenerator::getTimer()
-//{
-//    return &timer;
-//}
 
 void SignalGenerator::onTimerTimeout()
 {
     currentTime++;
-    *currentValuePtr = amplitude * sin((2*M_PI/interval)*currentTime + phase * (2 * M_PI /360));
-    double a = -10;
-    double b = 10;
-//    *currentValue += a+rand()*(b-a);
-    if(currentTime>50)
-        currentTime = 0;
+    *currentValuePtr = amplitude * sin(((2*M_PI/interval)*currentTime)* (2 * M_PI /360));
+//    if(currentTime>50)
+//        currentTime = 0;
 }

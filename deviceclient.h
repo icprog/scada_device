@@ -6,7 +6,7 @@
 #include <QDebug>
 #include <QTimer>
 #include "common/scadadevice.h"
-
+#include "simulatedsensor.h"
 
 class DeviceClient : public QObject
 {

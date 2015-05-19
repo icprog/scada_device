@@ -11,6 +11,7 @@ public:
     SimulatedSensor();
     SimulatedSensor(int uuid, QString name, QString factoryData, QString measurandName, QString measureUnit, double rangeMin, double rangeMax, double samplingPeriod);
     ~SimulatedSensor();
+    bool settingsReceived(Packet *settings);
 
 
 

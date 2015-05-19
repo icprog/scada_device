@@ -26,3 +26,16 @@ SimulatedSensor::~SimulatedSensor()
 //    delete generator;
 }
 
+bool SimulatedSensor::settingsReceived(Packet *settings)
+{
+    Sensor::settingsReceived(settings);
+    if(deviceState == STATE_ON)
+    {
+        timer.start();
+    }
+    if(deviceState == STATE_OFF)
+    {
+        timer.stop();
+        currentValue = 0;
+    }
+}
