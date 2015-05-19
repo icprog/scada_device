@@ -13,13 +13,13 @@ public:
     SignalGenerator(QObject *parent, double* generatedSignalPointer);
     ~SignalGenerator();
     void setTimeBase(double time);
-    void setParameters(double amplitude, double phase, double stdDeviation);
+    void setParameters(double amplitude, double constant, double stdDeviation);
     void setGeneratedValuePointer(double* genVal);
 //    QTimer* getTimer();
 private:
 
     double amplitude;
-    double phase;
+    double constant;
     double interval;
     double timeBase;
     double stdDeviation;

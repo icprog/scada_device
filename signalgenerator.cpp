@@ -30,10 +30,10 @@ void SignalGenerator::setTimeBase(double time)
     timer.start();
 }
 
-void SignalGenerator::setParameters(double amplitude, double phase, double stdDeviation)
+void SignalGenerator::setParameters(double amplitude, double constant, double stdDeviation)
 {
     this->amplitude = amplitude;
-    this->phase = phase;
+    this->constant = constant;
     this->stdDeviation = stdDeviation;
 }
 
@@ -47,6 +47,9 @@ void SignalGenerator::onTimerTimeout()
 {
     currentTime++;
     *currentValuePtr = amplitude * sin(((2*M_PI/interval)*currentTime)* (2 * M_PI /360));
+    *currentValuePtr += constant;
+    double rnd = (-1 *stdDeviation) + (double(rand())/RAND_MAX) * (2*stdDeviation);
+    *currentValuePtr += rnd;
 //    if(currentTime>50)
 //        currentTime = 0;
 }

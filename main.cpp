@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 
 
     QString name, factoryData, measurandName, measureUnit;
-    double rangeMin, rangeMax, samplingPeriod, amplitude, phase, stdDev, period;
+    double rangeMin, rangeMax, samplingPeriod, amplitude, phase, stdDev, period, constant;
     int uuid;
     qCout<<"Type: \" default\" to use default sensor settings or press ENTER to set new settings."<<endl;
     if(qCin.readLine()=="default")
@@ -33,8 +33,9 @@ int main(int argc, char *argv[])
         rangeMin = 0;
         rangeMax = 10;
         samplingPeriod = 0.1;
-        period = 1000;
-        amplitude = 1;
+        period = 100;
+        amplitude = 3;
+        constant = 5;
     }
     else
     {
@@ -59,8 +60,8 @@ int main(int argc, char *argv[])
         amplitude = (qCin.readLine()).toDouble();
         qCout<<"Period: "<<endl;
         period = (qCin.readLine()).toDouble();
-        qCout<<"Phase: "<<endl;
-        phase = (qCin.readLine()).toDouble();
+        qCout<<"Constant part: "<<endl;
+        constant = (qCin.readLine()).toDouble();
         qCout<<"Standard Deviation: "<<endl;
         stdDev = (qCin.readLine()).toDouble();
     }
@@ -68,7 +69,7 @@ int main(int argc, char *argv[])
 
     QCoreApplication a(argc, argv);
     SimulatedSensor simulatedSensor(uuid, name, factoryData, measurandName, measureUnit, rangeMin, rangeMax, samplingPeriod);
-    simulatedSensor.setParameters(amplitude,0, 0.1);
+    simulatedSensor.setParameters(amplitude,constant, 1);
     simulatedSensor.setTimeBase(period);
     ScadaDevice* device = &simulatedSensor;
 
