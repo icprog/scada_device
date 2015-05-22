@@ -21,6 +21,7 @@ bool DeviceClient::connectToHost(QString hostName, int portNumber)
     connect(this->socket, SIGNAL(connected()), this, SLOT(onConnected()));
     connect(this->socket, SIGNAL(readyRead()), this, SLOT(onBytesReceived()));
     connect(this->socket, SIGNAL(disconnected()), this, SLOT(onDisconnected()));
+    connect(this->socket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(onSocketError(QAbstractSocket::SocketError)));
 
     qDebug()<<"Connecting...";
     if(!socket->waitForConnected()) //Function above is non-blocking so we need to wait manually (30sec by default)
@@ -87,4 +88,10 @@ void DeviceClient::onBytesReceived()
             else device->settingsReceived(&element);
         }
     }
+}
+
+void DeviceClient::onSocketError(QAbstractSocket::SocketError error)
+{
+    qDebug() << "An error occured: "+ QString::number(error)<<endl;
+    qDebug() << socket->errorString()<<endl;
 }
